@@ -1,0 +1,12 @@
+# IDE
+.vscode/*
+!.vscode/launch.json
+
+# Metadata
+__pycache__
+logs
+
+# Custom
+**/*file/*
+!ds_*
+!in_*
