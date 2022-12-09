@@ -47,12 +47,7 @@ class Combiner:
 
         # Blendshapes
         path_blendshape = os.path.join(self.blendshape_dir, paths.blendshape_file(base_name))
-
-        f = open(path_blendshape)
-        data = json.load(f)
-        blendshape = np.array(data['weightMat'])
-        f.close()
-        
+        blendshape = self.__get_blendshape_weights(path=path_blendshape)
         blendshape = self.__cut(feature, blendshape)
         
         return feature, blendshape
@@ -67,4 +62,9 @@ class Combiner:
         blendshape_target = blendshape_target[start_videoframe : start_videoframe+n_audioframe]
         return blendshape_target
 
-    
+    def __get_blendshape_weights(self, path: str) -> np.array:
+        f = open(path)
+        data = json.load(f)
+        weights = np.array(data['weightMat'])
+        f.close()
+        return weights
